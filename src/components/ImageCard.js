@@ -1,4 +1,5 @@
 import React from "react"
+import {Link} from "react-router-dom"
 
 // Material UI Imports
 import {makeStyles} from "@material-ui/core/styles"
@@ -64,7 +65,7 @@ export function SpringModal(props) {
 
 	return (
 		<div>
-			<Modal
+				<Modal
 				aria-labelledby="spring-modal-title"
 				aria-describedby="spring-modal-description"
 				className={classes.modal}
@@ -73,13 +74,13 @@ export function SpringModal(props) {
 				closeAfterTransition
 				BackdropComponent={Backdrop}
 				BackdropProps={{
-					timeout: 500,
-				}}
-			>
+				timeout: 500,
+			}}
+				>
 				<Fade in={props.open}>
-					<iframe title={props.site} src={"https://anthonygregis.com/sites" + props.site} width="1000vh" height="500vh" />
+				<iframe title={props.site} src={"https://anthonygregis.com/sites" + props.site} width="1000vh" height="500vh" />
 				</Fade>
-			</Modal>
+				</Modal>
 		</div>
 	);
 }
@@ -98,24 +99,49 @@ const ImageCard = props => {
 
 	return (
 		<>
-			<SpringModal open={open} handleClose={handleClose} site={props.site} />
-			<Card className={classes.root} onClick={handleOpen}>
-				<CardActionArea>
-					<CardMedia
+			{!props.newTab &&
+			<>
+				<SpringModal open={open} handleClose={handleClose} site={props.site}/>
+				<Card className={classes.root} onClick={handleOpen}>
+					<CardActionArea>
+						<CardMedia
+							className={classes.media}
+							image={props.image}
+							title={props.name}
+						/>
+						<CardContent>
+							<Typography gutterBottom variant="h5" component="h2">
+								{props.name}
+							</Typography>
+							<Typography variant="body2" color="textSecondary" component="p">
+								{props.description}
+							</Typography>
+						</CardContent>
+					</CardActionArea>
+				</Card>
+			</>
+			}
+			{props.newTab == "true" &&
+			<a href="https://anthonygregis.com/sites/dabcoin/login.php" target="_blank" style={{ textDecoration: 'none' }}>
+				<Card className={classes.root} onClick={handleOpen}>
+					<CardActionArea>
+						<CardMedia
 						className={classes.media}
 						image={props.image}
 						title={props.name}
-					/>
-					<CardContent>
-						<Typography gutterBottom variant="h5" component="h2">
-							{props.name}
-						</Typography>
-						<Typography variant="body2" color="textSecondary" component="p">
-							{props.description}
-						</Typography>
-					</CardContent>
-				</CardActionArea>
-			</Card>
+						/>
+						<CardContent>
+							<Typography gutterBottom variant="h5" component="h2">
+								{props.name}
+							</Typography>
+							<Typography variant="body2" color="textSecondary" component="p">
+								{props.description}
+							</Typography>
+						</CardContent>
+					</CardActionArea>
+				</Card>
+			</a>
+			}
 		</>
 	)
 }

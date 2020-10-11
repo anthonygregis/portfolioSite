@@ -48,6 +48,7 @@ const Home = () => {
 					description="A recreation of a cryptocurrency stock market, designed with random fluctuating prices, user wallets, public transaction records, and trading."
 					image="/images/Dabcoin.png"
 					site="/dabcoin/login.php"
+					newTab="true"
 				/>
 			</Grid>
 			<Grid item xs={12} sm={6} md={4} lg={3} align="center">
